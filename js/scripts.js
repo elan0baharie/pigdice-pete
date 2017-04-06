@@ -1,45 +1,94 @@
-function Game(name,computer){
-  this.name=name;
-  this.playerScore=0;
-  this.computer=computer;
-  this.computerScore=0;
-  this.turnScore=0;
+function Game(name, roll, score, total){
+  this.name = name;
+  this.roll = roll;
+  this.score = [];
+  this.total = total;
 }
 
-Game.prototype.randomize = function () {
-    var diceArray = [1,2,3,4,5,6];
-    var roll = diceArray[Math.floor(Math.random()* diceArray.length)];
-    return roll;
-  }
+var roll = function () {
+  var roll = Math.floor((Math.random()* 5)+1);
+  return roll;
+}
 
-  Game.prototype.score= function () {
-    if (user=== 1){
-     total = 0;
-     alert("gameover")}
-     
-    this.computerScore+=this.turnScore;
-    this.turnScore=0
-    return this.computerScore;
-  }
+Game.prototype.holdScore = function(dieRoll) {
 
+}
+
+
+Game.prototype.dice = function () {
+  var pRoll = Math.floor((Math.random()* 5)+1);
+  console.log(pRoll);
+    if (pRoll === 1){
+
+      alert("Computer's Turn Ends");
+
+    } else {
+    this.score.push(pRoll);
+    console.log(this.score);
+    this.dice();
+    }
+}
+
+
+var playerChoice = function (gameStatus) {
+  var gameStatus = "";
+  var choice = document.getElementsByName('players');
+
+  for(var i = 0; i < choice.length ; i++) {
+    if(choice[i].checked) {
+      gameStatus = choice[i].value;
+      return gameStatus;
+    }
+  };
+}
+
+function showPlayers (userResponse) {
+  if(userResponse === "one-player") {
+    var plyOne = document.getElementById('playOne');
+    plyOne.classList.remove(".hide-class");
+  } else {
+    var playOne = document.getElementById('playOne');
+    var plyTwo = document.getElementById('playTwo');
+    plyOne.classList.remove("hide-class");
+    plyTwo.classList.remove("hide-class");
+  }
+}
 
 
 $(document).ready(function(){
-  $("#formone").submit(function(event) {
-    $(event).preventDefault;
-    var inputRoll= parseInt("#roll").val();
-    var total =0;
-    var user= inputRoll;
 
-    } else {
+  var newGameOpponent = new Game();
+  var newGamePlayerOne = new Game();
 
-    }
-
-    $("?").click(){
-      var hold=[];
-      hold.push(this.playerScore);
-    }
+  $("#playerOptions").click(function() {
+    var numbOfPlayers = playerChoice();
+    // $("#playerOptions").hide(800);
+    // showPlayers(numbOfPlayers);
+  });
 
 
-});
+  // $("#formone").submit(function(event) {
+  //   event.preventDefault();
+  //   newGameOpponent.dice();
+  // });
+
+  $("#rollPlayerDie").click(function(event) {
+    event.preventDefault();
+    var sngleRoll = roll();
+    console.log(sngleRoll);
+    var tempHold = newGamePlayerOne.score;
+    console.log(tempHold);
+    newGamePlayerOne.score = sngleRoll + tempHold;
+    console.log(newGamePlayerOne.score );
+  });
+  // $("#formone").submit(function(event) {
+  //   event.preventDefault();
+  //   newGame.hold();
+  //
+  // $("#formone").submit(function(event) {
+  //   event.preventDefault();
+  //   newGame.hold();
+
+
+
 });

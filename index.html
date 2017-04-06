@@ -10,23 +10,47 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
-          <form id="formone">
-            <div class="form-group">
-              <label for="roll">Enter Number</label>
-              <input type="text" class="form-control" id="roll">
-            </div>
+        <div class="jumbotron">
+          <h2>Pig Dice</h2>
+        </div>
+        <div class="col-md-12">
 
+          <form id="playerOptions">
+            <div class="form-group panel panel-default">
+              <div class="panel-heading">
+                <h3>Choose 1 player or 2 player:</h3>
+              </div>
+              <div class="form-group panel-body">
+                <label> One Player
+                  <input type="radio" name="players" value="one-player">
+                </label>
+                <br>
+                <label> Two Player
+                  <input type="radio" name="players" value="two-players">
+                </label>
+              </div>
             </div>
-            <button id="btn" type="submit" name="button"> roll</button> 
           </form>
-
-          </div>
-          </div>
+        </div>
         <div class="row">
+        <div class="col-md-8 game-div">
+          <form id="formone">
+            <div id="playOne" class="form-group well">
+
+                <button id="rollPlayerDie" type="submit" name="button">Roll</button>
+                <button id="hold" type="submit" name="button">Hold</button>
+            </div>
+            <div id="playTwo" class="well form-group">
+              <button id="rollTwo" type="button" name="button">Roll</button>
+              <button id="holdTwo" type="submit" name="button">Hold</button>
+            </div>
+          </form>
+          </div>
           <div class="col-md-4">
-          <h1 id="one"></h1>
-          <h1 id="two"></h1>
+            <h3 id="one"></h3>
+            <h3 id="two"></h3>
+          </div>
+        </div>
       </div>
     </div>
   </body>
