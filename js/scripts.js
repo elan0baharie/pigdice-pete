@@ -15,8 +15,8 @@ function Game(player1, player2, rollNum){
       return this.score;
     } else if (this.score > 0) {
       console.log(this.rollNum);
-
-      return this.score + this.rollNum;
+      this.score = this.score + this.rollNum
+      return this.score;
     }
   }
 }
