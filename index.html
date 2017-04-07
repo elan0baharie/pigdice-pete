@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <script src="js/jquery-3.2.0.js"></script>
@@ -13,45 +14,44 @@
         <div class="jumbotron">
           <h2>Pig Dice</h2>
         </div>
-        <div class="col-md-12">
 
+        <div class="col-md-4">
           <form id="playerOptions">
             <div class="form-group panel panel-default">
               <div class="panel-heading">
                 <h3>Choose 1 player or 2 player:</h3>
               </div>
               <div class="form-group panel-body">
-                <label> One Player
-                  <input type="radio" name="players" value="one-player">
-                </label>
-                <br>
-                <label> Two Player
-                  <input type="radio" name="players" value="two-players">
-                </label>
+                <button id="btnOnePlyr" class="btn bg-primary">One Player</button>
+              <div class="col-xs-1">
+              </div>
+                <button id="btnTwoPlyr" class="btn bg-primary">Two Player</button>
               </div>
             </div>
           </form>
         </div>
-        <div class="row">
-        <div class="col-md-8 game-div">
-          <form id="formone">
-            <div id="playOne" class="form-group well">
 
-                <button id="rollPlayerDie" type="submit" name="button">Roll</button>
-                <button id="hold" type="submit" name="button">Hold</button>
+        <div class="col-md-8 game-div">
+          <form id="gameBtns">
+            <div id="playOne" class="form-group well hide-class">
+              <button id="rollPlayerDie" type="button" name="ply_rl">Roll</button>
+              <button id="holdOne" type="button" name="ply_rl">Hold</button>
             </div>
-            <div id="playTwo" class="well form-group">
-              <button id="rollTwo" type="button" name="button">Roll</button>
-              <button id="holdTwo" type="submit" name="button">Hold</button>
+            <div id="playTwo" class="well form-group hide-class">
+              <button id="rollOppDie" type="button" name="op_rl">Roll</button>
+              <button id="holdOpp" type="button" name="op_rl">Hold</button>
             </div>
           </form>
-          </div>
-          <div class="col-md-4">
-            <h3 id="one"></h3>
-            <h3 id="two"></h3>
-          </div>
         </div>
-      </div>
-    </div>
+        <div class="col-md-4">
+          <form id="formone">
+            <div class="form-group well">
+              <button id="rollOppDie" type="submit">Roll</button>
+            </div>
+          </form>
+        </div>
+
+      </div><!--Row-->
+    </div><!--Container-->
   </body>
 </html>

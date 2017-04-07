@@ -9,22 +9,20 @@ function Game(player1, player2, rollNum){
     return roll;
   }
   this.holdScore = function() {
-    if(this.score === 0) {
+    if(this.rollNum === 1) {
+      alert("You hit one");
+      return this.score = 0;
+    } else if (this.score === 0) {
       console.log(this.score);
       this.score = this.rollNum + this.score;
       return this.score;
-    } else if (this.score > 0) {
+    } else {
       console.log(this.rollNum);
       this.score = this.score + this.rollNum
       return this.score;
     }
   }
 }
-
-// var roll = function () {
-//   var roll = Math.floor((Math.random()* 5)+1);
-//   return roll;
-// }
 
 // Game.prototype.holdScore = function(dieRoll) {
 //   debugger;
@@ -47,62 +45,42 @@ function Game(player1, player2, rollNum){
 // }
 
 
-Game.prototype.dice = function () {
-  var pRoll = Math.floor((Math.random()* 5)+1);
+Game.prototype.oppDice = function () {
+  var pRoll = this.roll();
   console.log(pRoll);
     if (pRoll === 1){
-
       alert("Computer's Turn Ends");
-
+      this.score = 0;
+      return;
     } else {
-    this.score.push(pRoll);
-    console.log(this.score);
-    this.dice();
+      this.score = this.score + pRoll;
+      console.log(this.score);
+      this.oppDice();
     }
 }
-
-
-var playerChoice = function (gameStatus) {
-  var gameStatus = "";
-  var choice = document.getElementsByName('players');
-
-  for(var i = 0; i < choice.length ; i++) {
-    if(choice[i].checked) {
-      gameStatus = choice[i].value;
-      return gameStatus;
-    }
-  };
-}
-
-function showPlayers (userResponse) {
-  if(userResponse === "one-player") {
-    var plyOne = document.getElementById('playOne');
-    plyOne.classList.remove(".hide-class");
-  } else {
-    var playOne = document.getElementById('playOne');
-    var plyTwo = document.getElementById('playTwo');
-    plyOne.classList.remove("hide-class");
-    plyTwo.classList.remove("hide-class");
-  }
-}
-
 
 $(document).ready(function(){
 
   var newGameOpponent = new Game();
   var newGamePlayerOne = new Game();
 
-  $("#playerOptions").click(function() {
-    var numbOfPlayers = playerChoice();
-    // $("#playerOptions").hide(800);
-    // showPlayers(numbOfPlayers);
+  $("#btnOnePlyr").click(function(event) {
+    event.preventDefault();
+    $("#playOne").removeClass("hide-class");
+    $("#playerOptions").hide(800);
   });
 
+  $("#btnTwoPlyr").click(function(event) {
+    event.preventDefault();
+    $("#playOne").removeClass("hide-class");
+    $("#playTwo").removeClass("hide-class");
+    $("#playerOptions").hide(800);
+  });
 
-  // $("#formone").submit(function(event) {
-  //   event.preventDefault();
-  //   newGameOpponent.dice();
-  // });
+  $("#formone").submit(function(event) {
+    event.preventDefault();
+    newGameOpponent.oppDice();
+  });
 
   $("#rollPlayerDie").click(function(event) {
     event.preventDefault();
